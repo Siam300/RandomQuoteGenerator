@@ -11,7 +11,7 @@ import SwiftUI
 struct quoteGeneratorApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            QuoteView()
         }
     }
 }
