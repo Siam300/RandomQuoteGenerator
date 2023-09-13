@@ -22,6 +22,7 @@ struct aPicture: Identifiable {
 struct QuoteView: View {
     @StateObject private var viewModel = QuoteViewModel()
     @State var random : Int = 0
+    @State var offset: CGSize = .zero
     
     let pictures = [
         aPicture(id: 0, name: "1", imageName: "1"),
@@ -30,6 +31,19 @@ struct QuoteView: View {
         aPicture(id: 3, name: "4", imageName: "4"),
         aPicture(id: 4, name: "5", imageName: "5"),
         aPicture(id: 5, name: "6", imageName: "6"),
+        aPicture(id: 6, name: "7", imageName: "7"),
+        aPicture(id: 7, name: "8", imageName: "8"),
+        aPicture(id: 8, name: "9", imageName: "9"),
+        aPicture(id: 9, name: "10", imageName: "10"),
+        aPicture(id: 10, name: "11", imageName: "11"),
+        aPicture(id: 11, name: "12", imageName: "12"),
+        aPicture(id: 12, name: "13", imageName: "12"),
+        aPicture(id: 13, name: "14", imageName: "14"),
+        aPicture(id: 14, name: "15", imageName: "15"),
+        aPicture(id: 15, name: "16", imageName: "16"),
+        aPicture(id: 16, name: "17", imageName: "17"),
+        aPicture(id: 17, name: "18", imageName: "18"),
+        aPicture(id: 18, name: "19", imageName: "19"),
     ]
     
     var body: some View {
@@ -51,18 +65,28 @@ struct QuoteView: View {
                     Text("- " + quote.author)
                         .foregroundColor(.gray)
                         .fontWeight(.heavy)
-                        .padding(.all)
+                        .padding(.horizontal)
+                        .background(Color.white.opacity(0.8))
                 }
             }
             .padding(.all)
+            .offset(offset)
+            .scaleEffect(getScaleAmmount())
+            .rotationEffect(Angle(degrees: getRotationAmmount()))
             .gesture(
-                DragGesture(minimumDistance: 50)
-                    .onEnded { value in
-                        if value.translation.width < 0 {
-                            viewModel.nextQuote()
-                            self.random = Int.random(in: 0..<self.pictures.count)
-                        } else if value.translation.width > 0 {
-                            viewModel.previousQuote()
+                DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                    .onChanged { value in
+                        offset.width = value.translation.width
+                    }
+                    .onEnded{ value in
+                        offset = .zero
+                        let gestureThreshold: CGFloat = 50
+                        if abs(value.translation.width) > gestureThreshold {
+                            if value.translation.width > 0 {
+                                viewModel.previousQuote()
+                            } else {
+                                viewModel.nextQuote()
+                            }
                             self.random = Int.random(in: 0..<self.pictures.count)
                         }
                     }
@@ -74,6 +98,36 @@ struct QuoteView: View {
             }
         }
     }
+    
+    func withSwipeAnimation(forward: Bool) {
+        withAnimation(.spring()) {
+            offset = .zero
+            if forward && random < pictures.count - 1 {
+                random += 1
+                viewModel.nextQuote()
+            } else if !forward && random > 0 {
+                random -= 1
+                viewModel.previousQuote()
+            }
+        }
+    }
+    
+    func getScaleAmmount() -> CGFloat {
+        let max = UIScreen.main.bounds.width / 2
+        let currentAmmount = abs(offset.width)
+        let persentage = currentAmmount / max
+        return 1.0 - min(persentage, 0.6) * 0.5
+    }
+    
+    func getRotationAmmount() -> Double {
+        let max = UIScreen.main.bounds.width / 2
+        let currentAmmount = offset.width
+        let persentage = currentAmmount / max
+        let persentageAsDouble = Double(persentage)
+        let maxAngle: Double = 10
+        return persentageAsDouble * maxAngle
+    }
+    
 }
 
 struct QuoteView_Previews: PreviewProvider {

@@ -31,6 +31,7 @@ class QuoteViewModel: ObservableObject {
         //        request.httpMethod = "GET"
         //        request.setValue("f8d176fd89msh7a6bf029fa427d2p17fe09jsn2fe715e0c853", forHTTPHeaderField: "X-RapidAPI-Key")
         //        request.setValue("yusufnb-quotes-v1.p.rapidapi.com", forHTTPHeaderField: "X-RapidAPI-Host")
+        
         let session = URLSession.shared
         let dataTask = session.dataTask(with: url) { [weak self] (data, response, error) in
             DispatchQueue.main.async {
@@ -47,9 +48,28 @@ class QuoteViewModel: ObservableObject {
                 }
             }
         }
-        
         dataTask.resume()
     }
+    
+    func getRandomImage(completion: @escaping (URL?) -> Void) {
+            guard let url = URL(string: "https://random.responsiveimages.io/") else {
+                completion(nil)
+                return
+            }
+
+            let session = URLSession.shared
+            let dataTask = session.dataTask(with: url) { (data, response, error) in
+                if let data = data,
+                   let urlString = String(data: data, encoding: .utf8),
+                   let imageUrl = URL(string: urlString) {
+                    completion(imageUrl)
+                } else {
+                    completion(nil)
+                }
+            }
+
+            dataTask.resume()
+        }
     
     func nextQuote() {
         if currentIndex < quotes.count - 1 {
