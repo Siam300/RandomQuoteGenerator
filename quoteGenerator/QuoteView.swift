@@ -48,26 +48,49 @@ struct QuoteView: View {
     
     var body: some View {
         ZStack {
+            Color("bcolor")
+                .edgesIgnoringSafeArea(.all)
+            
             Image(pictures[self.random].imageName)
                 .resizable()
-                .scaledToFit()
+                .scaledToFill()
+                .frame(maxWidth: 320, maxHeight: 600)
                 .aspectRatio(contentMode: .fill)
-                .clipped()
+                .clipShape(RoundedRectangle(cornerRadius: 40))
+                .offset(offset)
+                .scaleEffect(getScaleAmmount())
+                .rotationEffect(Angle(degrees: getRotationAmmount()))
+            
+            Color("bcolor").opacity(0.4)
                 .edgesIgnoringSafeArea(.all)
+            
             VStack(spacing: 20) {
+                Spacer()
                 if let quote = viewModel.quotes[safe: viewModel.currentIndex] {
                     Text(quote.content)
-                        .frame(maxWidth: 340)
+                        .foregroundColor(Color.white)
+                        .font(.largeTitle)
+                        .frame(width: 250)
                         .padding(.all)
-                        .background(Color.white.opacity(0.8))
+                        //.background(Color.white.opacity(0.8))
                         .multilineTextAlignment(.center)
                         .padding(.all)
+                    
                     Text("- " + quote.author)
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color.white)
                         .fontWeight(.heavy)
                         .padding(.horizontal)
-                        .background(Color.white.opacity(0.8))
+                        //.background(Color.white.opacity(0.8))
                 }
+                Spacer()
+                Button(action: {
+                    withSwipeAnimation(forward: true)
+                }, label: {
+                    Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
+                        .font(.largeTitle)
+                        .foregroundColor(.black)
+                })
+
             }
             .padding(.all)
             .offset(offset)
