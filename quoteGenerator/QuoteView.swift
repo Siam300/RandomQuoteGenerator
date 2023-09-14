@@ -64,25 +64,55 @@ struct QuoteView: View {
             Color("bcolor").opacity(0.4)
                 .edgesIgnoringSafeArea(.all)
             
-            VStack(spacing: 20) {
-                Spacer()
-                if let quote = viewModel.quotes[safe: viewModel.currentIndex] {
-                    Text(quote.content)
-                        .foregroundColor(Color.white)
-                        .font(.largeTitle)
-                        .frame(width: 250)
-                        .padding(.all)
-                        //.background(Color.white.opacity(0.8))
-                        .multilineTextAlignment(.center)
-                        .padding(.all)
-                    
-                    Text("- " + quote.author)
-                        .foregroundColor(Color.white)
-                        .fontWeight(.heavy)
-                        .padding(.horizontal)
-                        //.background(Color.white.opacity(0.8))
+            VStack {
+                VStack(spacing: 20) {
+                    Spacer()
+                    if let quote = viewModel.quotes[safe: viewModel.currentIndex] {
+                        Text(quote.content)
+                            .foregroundColor(Color.white)
+                            .font(Font.custom("LoveYaLikeASister-Regular", size: 36))
+                            .fontWeight(.bold)
+                            .frame(width: 250)
+                            .padding(.all)
+                            //.background(Color.white.opacity(0.8))
+                            .multilineTextAlignment(.center)
+                            .padding(.all)
+                        
+                        Text("- " + quote.author)
+                            .foregroundColor(Color.white)
+                            .fontWeight(.heavy)
+                            .padding(.horizontal)
+                            //.background(Color.white.opacity(0.8))
+                    }
+                    Spacer()
                 }
-                Spacer()
+                .padding(.all)
+                .offset(offset)
+                .scaleEffect(getScaleAmmount())
+                .rotationEffect(Angle(degrees: getRotationAmmount()))
+                .gesture(
+                    DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                        .onChanged { value in
+                            offset.width = value.translation.width
+                        }
+                        .onEnded{ value in
+                            offset = .zero
+                            let gestureThreshold: CGFloat = 50
+                            if abs(value.translation.width) > gestureThreshold {
+                                if value.translation.width > 0 {
+                                    viewModel.previousQuote()
+                                } else {
+                                    viewModel.nextQuote()
+                                }
+                                self.random = Int.random(in: 0..<self.pictures.count)
+                            }
+                        }
+                )
+                .onAppear {
+                    if viewModel.quotes.isEmpty {
+                        viewModel.getData()
+                    }
+            }
                 Button(action: {
                     withSwipeAnimation(forward: true)
                 }, label: {
@@ -90,35 +120,8 @@ struct QuoteView: View {
                         .font(.largeTitle)
                         .foregroundColor(.black)
                 })
-
             }
-            .padding(.all)
-            .offset(offset)
-            .scaleEffect(getScaleAmmount())
-            .rotationEffect(Angle(degrees: getRotationAmmount()))
-            .gesture(
-                DragGesture(minimumDistance: 0, coordinateSpace: .local)
-                    .onChanged { value in
-                        offset.width = value.translation.width
-                    }
-                    .onEnded{ value in
-                        offset = .zero
-                        let gestureThreshold: CGFloat = 50
-                        if abs(value.translation.width) > gestureThreshold {
-                            if value.translation.width > 0 {
-                                viewModel.previousQuote()
-                            } else {
-                                viewModel.nextQuote()
-                            }
-                            self.random = Int.random(in: 0..<self.pictures.count)
-                        }
-                    }
-            )
-            .onAppear {
-                if viewModel.quotes.isEmpty {
-                    viewModel.getData()
-                }
-            }
+            
         }
     }
     

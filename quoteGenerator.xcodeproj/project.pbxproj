@@ -12,6 +12,7 @@
 		C92B7D022AAE375000D1CA4F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C92B7D012AAE375000D1CA4F /* Preview Assets.xcassets */; };
 		C92B7D0B2AAE391C00D1CA4F /* QuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92B7D0A2AAE391C00D1CA4F /* QuoteViewModel.swift */; };
 		C92B7D0D2AAE394400D1CA4F /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92B7D0C2AAE394400D1CA4F /* QuoteView.swift */; };
+		C9699C2C2AB3568D007B5E31 /* LoveYaLikeASister-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9699C2A2AB3568C007B5E31 /* LoveYaLikeASister-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		C92B7D012AAE375000D1CA4F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C92B7D0A2AAE391C00D1CA4F /* QuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteViewModel.swift; sourceTree = "<group>"; };
 		C92B7D0C2AAE394400D1CA4F /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
+		C9699C2A2AB3568C007B5E31 /* LoveYaLikeASister-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LoveYaLikeASister-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 				C92B7CFA2AAE374C00D1CA4F /* quoteGeneratorApp.swift */,
 				C92B7D0A2AAE391C00D1CA4F /* QuoteViewModel.swift */,
 				C92B7D0C2AAE394400D1CA4F /* QuoteView.swift */,
+				C9699C292AB35671007B5E31 /* Fonts */,
 				C92B7CFE2AAE375000D1CA4F /* Assets.xcassets */,
 				C92B7D002AAE375000D1CA4F /* Preview Content */,
 			);
@@ -68,6 +71,14 @@
 				C92B7D012AAE375000D1CA4F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C9699C292AB35671007B5E31 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C9699C2A2AB3568C007B5E31 /* LoveYaLikeASister-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,6 +141,7 @@
 			files = (
 				C92B7D022AAE375000D1CA4F /* Preview Assets.xcassets in Resources */,
 				C92B7CFF2AAE375000D1CA4F /* Assets.xcassets in Resources */,
+				C9699C2C2AB3568D007B5E31 /* LoveYaLikeASister-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +285,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"quoteGenerator/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = quoteGenerator/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -301,6 +314,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"quoteGenerator/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = quoteGenerator/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
