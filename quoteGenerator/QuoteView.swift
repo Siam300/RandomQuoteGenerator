@@ -72,9 +72,9 @@ struct QuoteView: View {
                             .foregroundColor(Color.white)
                             .font(Font.custom("LoveYaLikeASister-Regular", size: 36))
                             .fontWeight(.bold)
-                            .frame(width: 250)
+                            .frame(maxWidth: 320, maxHeight: 485)
                             .padding(.all)
-                            //.background(Color.white.opacity(0.8))
+                            .background(Color.white.opacity(0.0001))
                             .multilineTextAlignment(.center)
                             .padding(.all)
                         
