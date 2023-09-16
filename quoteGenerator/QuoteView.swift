@@ -23,6 +23,7 @@ struct QuoteView: View {
     @StateObject private var viewModel = QuoteViewModel()
     @State var random : Int = 0
     @State var offset: CGSize = .zero
+    @State private var isSwipeAnimationActive = false
     
     let pictures = [
         aPicture(id: 0, name: "1", imageName: "1"),
@@ -50,78 +51,69 @@ struct QuoteView: View {
         ZStack {
             Color("bcolor")
                 .edgesIgnoringSafeArea(.all)
-            
-            Image(pictures[self.random].imageName)
-                .resizable()
-                .scaledToFill()
-                .frame(maxWidth: 320, maxHeight: 600)
-                .aspectRatio(contentMode: .fill)
-                .clipShape(RoundedRectangle(cornerRadius: 40))
-                .offset(offset)
-                .scaleEffect(getScaleAmmount())
-                .rotationEffect(Angle(degrees: getRotationAmmount()))
-            
-            Color("bcolor").opacity(0.4)
-                .edgesIgnoringSafeArea(.all)
-            
-            VStack {
+            ZStack {
+                Image(pictures[self.random].imageName)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(maxWidth: 320, maxHeight: 600)
+                    .aspectRatio(contentMode: .fill)
+                    .clipShape(RoundedRectangle(cornerRadius: 40))
+                
+                Color("bcolor").opacity(0.5)
+                    .edgesIgnoringSafeArea(.all)
+                
                 VStack(spacing: 20) {
                     Spacer()
                     if let quote = viewModel.quotes[safe: viewModel.currentIndex] {
                         Text(quote.content)
                             .foregroundColor(Color.white)
-                            .font(Font.custom("LoveYaLikeASister-Regular", size: 36))
+                            .font(Font.custom("LoveYaLikeASister-Regular", size: 32))
                             .fontWeight(.bold)
                             .frame(maxWidth: 320, maxHeight: 485)
                             .padding(.all)
-                            .background(Color.white.opacity(0.0001))
                             .multilineTextAlignment(.center)
                             .padding(.all)
                         
                         Text("- " + quote.author)
+                            .font(Font.custom("Courgette-Regular", size: 16))
                             .foregroundColor(Color.white)
                             .fontWeight(.heavy)
                             .padding(.horizontal)
-                            //.background(Color.white.opacity(0.8))
                     }
                     Spacer()
                 }
-                .padding(.all)
-                .offset(offset)
-                .scaleEffect(getScaleAmmount())
-                .rotationEffect(Angle(degrees: getRotationAmmount()))
-                .gesture(
-                    DragGesture(minimumDistance: 0, coordinateSpace: .local)
-                        .onChanged { value in
-                            offset.width = value.translation.width
-                        }
-                        .onEnded{ value in
-                            offset = .zero
-                            let gestureThreshold: CGFloat = 50
-                            if abs(value.translation.width) > gestureThreshold {
-                                if value.translation.width > 0 {
-                                    viewModel.previousQuote()
-                                } else {
-                                    viewModel.nextQuote()
-                                }
-                                self.random = Int.random(in: 0..<self.pictures.count)
-                            }
-                        }
-                )
-                .onAppear {
-                    if viewModel.quotes.isEmpty {
-                        viewModel.getData()
+            }
+            .padding(.all)
+            .offset(offset)
+            .scaleEffect(getScaleAmmount())
+            .rotationEffect(Angle(degrees: getRotationAmmount()))
+            .gesture(
+                DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                    .onChanged { value in
+                        offset.width = value.translation.width
                     }
+                    .onEnded{ value in
+                        offset = .zero
+                        let gestureThreshold: CGFloat = 50
+                        if abs(value.translation.width) > gestureThreshold {
+                            if value.translation.width > 0 {
+                                viewModel.previousQuote()
+                            } else {
+                                viewModel.nextQuote()
+                            }
+                            self.random = Int.random(in: 0..<self.pictures.count)
+                        }
+                    }
+            )
+            .onAppear {
+                if viewModel.quotes.isEmpty {
+                    viewModel.getData()
+                }
             }
-                Button(action: {
-                    withSwipeAnimation(forward: true)
-                }, label: {
-                    Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
-                        .font(.largeTitle)
-                        .foregroundColor(.black)
-                })
+            VStack {
+                Spacer()
+                ButtonView(withSwipeAnimation: $isSwipeAnimationActive)
             }
-            
         }
     }
     
@@ -159,5 +151,19 @@ struct QuoteView: View {
 struct QuoteView_Previews: PreviewProvider {
     static var previews: some View {
         QuoteView()
+    }
+}
+
+struct ButtonView: View {
+    @Binding var withSwipeAnimation: Bool
+    
+    var body: some View {
+        Button(action: {
+            withSwipeAnimation = true
+        }, label: {
+            Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
+                .font(.largeTitle)
+                .foregroundColor(.black)
+        })
     }
 }

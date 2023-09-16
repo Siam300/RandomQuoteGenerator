@@ -13,6 +13,7 @@
 		C92B7D0B2AAE391C00D1CA4F /* QuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92B7D0A2AAE391C00D1CA4F /* QuoteViewModel.swift */; };
 		C92B7D0D2AAE394400D1CA4F /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92B7D0C2AAE394400D1CA4F /* QuoteView.swift */; };
 		C9699C2C2AB3568D007B5E31 /* LoveYaLikeASister-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9699C2A2AB3568C007B5E31 /* LoveYaLikeASister-Regular.ttf */; };
+		C97D063D2AB5FCBC000CD2EB /* Courgette-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C97D063C2AB5FCBC000CD2EB /* Courgette-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		C92B7D0A2AAE391C00D1CA4F /* QuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteViewModel.swift; sourceTree = "<group>"; };
 		C92B7D0C2AAE394400D1CA4F /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
 		C9699C2A2AB3568C007B5E31 /* LoveYaLikeASister-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LoveYaLikeASister-Regular.ttf"; sourceTree = "<group>"; };
+		C97D063C2AB5FCBC000CD2EB /* Courgette-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Courgette-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				C9699C2A2AB3568C007B5E31 /* LoveYaLikeASister-Regular.ttf */,
+				C97D063C2AB5FCBC000CD2EB /* Courgette-Regular.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			files = (
 				C92B7D022AAE375000D1CA4F /* Preview Assets.xcassets in Resources */,
 				C92B7CFF2AAE375000D1CA4F /* Assets.xcassets in Resources */,
+				C97D063D2AB5FCBC000CD2EB /* Courgette-Regular.ttf in Resources */,
 				C9699C2C2AB3568D007B5E31 /* LoveYaLikeASister-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
