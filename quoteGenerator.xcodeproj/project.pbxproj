@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C91D0C0D2AB734D300E6F0D7 /* QuoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91D0C0C2AB734D300E6F0D7 /* QuoteModel.swift */; };
 		C92B7CFB2AAE374C00D1CA4F /* quoteGeneratorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92B7CFA2AAE374C00D1CA4F /* quoteGeneratorApp.swift */; };
 		C92B7CFF2AAE375000D1CA4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C92B7CFE2AAE375000D1CA4F /* Assets.xcassets */; };
 		C92B7D022AAE375000D1CA4F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C92B7D012AAE375000D1CA4F /* Preview Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C91D0C0C2AB734D300E6F0D7 /* QuoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteModel.swift; sourceTree = "<group>"; };
 		C92B7CF72AAE374C00D1CA4F /* quoteGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = quoteGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C92B7CFA2AAE374C00D1CA4F /* quoteGeneratorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quoteGeneratorApp.swift; sourceTree = "<group>"; };
 		C92B7CFE2AAE375000D1CA4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				C92B7CFA2AAE374C00D1CA4F /* quoteGeneratorApp.swift */,
+				C91D0C0C2AB734D300E6F0D7 /* QuoteModel.swift */,
 				C92B7D0A2AAE391C00D1CA4F /* QuoteViewModel.swift */,
 				C92B7D0C2AAE394400D1CA4F /* QuoteView.swift */,
 				C9699C292AB35671007B5E31 /* Fonts */,
@@ -159,6 +162,7 @@
 				C92B7CFB2AAE374C00D1CA4F /* quoteGeneratorApp.swift in Sources */,
 				C92B7D0B2AAE391C00D1CA4F /* QuoteViewModel.swift in Sources */,
 				C92B7D0D2AAE394400D1CA4F /* QuoteView.swift in Sources */,
+				C91D0C0D2AB734D300E6F0D7 /* QuoteModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

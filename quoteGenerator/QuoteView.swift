@@ -13,12 +13,6 @@ extension Array {
     }
 }
 
-struct aPicture: Identifiable {
-    var id: Int
-    var name: String
-    var imageName: String
-}
-
 struct QuoteView: View {
     @StateObject private var viewModel = QuoteViewModel()
     @State var random : Int = 0

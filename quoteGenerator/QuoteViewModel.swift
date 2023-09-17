@@ -8,13 +8,6 @@
 import SwiftUI
 import Foundation
 
-struct Quote: Decodable {
-    let content: String
-    let author: String
-    let dateAdded: String
-}
-
-
 class QuoteViewModel: ObservableObject {
     @Published var quotes: [Quote] = []
     @Published var currentIndex: Int = 0
