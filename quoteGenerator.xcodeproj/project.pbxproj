@@ -61,8 +61,8 @@
 			children = (
 				C92B7CFA2AAE374C00D1CA4F /* quoteGeneratorApp.swift */,
 				C91D0C0C2AB734D300E6F0D7 /* QuoteModel.swift */,
-				C92B7D0A2AAE391C00D1CA4F /* QuoteViewModel.swift */,
 				C92B7D0C2AAE394400D1CA4F /* QuoteView.swift */,
+				C92B7D0A2AAE391C00D1CA4F /* QuoteViewModel.swift */,
 				C9699C292AB35671007B5E31 /* Fonts */,
 				C92B7CFE2AAE375000D1CA4F /* Assets.xcassets */,
 				C92B7D002AAE375000D1CA4F /* Preview Content */,

@@ -12,8 +12,13 @@ class QuoteViewModel: ObservableObject {
     @Published var quotes: [Quote] = []
     @Published var currentIndex: Int = 0
     @Published var isError = false
+    @Published var currentImageName: String = ""
+    @Published var currentImageIndex: Int = 0
     
-    init() {
+    var pictures: [aPicture]
+    
+    init(pictures: [aPicture]) {
+        self.pictures = pictures
         getData()
     }
     
@@ -44,38 +49,40 @@ class QuoteViewModel: ObservableObject {
         dataTask.resume()
     }
     
-    func getRandomImage(completion: @escaping (URL?) -> Void) {
-            guard let url = URL(string: "https://random.responsiveimages.io/") else {
-                completion(nil)
-                return
-            }
-
-            let session = URLSession.shared
-            let dataTask = session.dataTask(with: url) { (data, response, error) in
-                if let data = data,
-                   let urlString = String(data: data, encoding: .utf8),
-                   let imageUrl = URL(string: urlString) {
-                    completion(imageUrl)
-                } else {
-                    completion(nil)
-                }
-            }
-
-            dataTask.resume()
-        }
+//    func getRandomImage(completion: @escaping (URL?) -> Void) {
+//            guard let url = URL(string: "https://random.responsiveimages.io/") else {
+//                completion(nil)
+//                return
+//            }
+//
+//            let session = URLSession.shared
+//            let dataTask = session.dataTask(with: url) { (data, response, error) in
+//                if let data = data,
+//                   let urlString = String(data: data, encoding: .utf8),
+//                   let imageUrl = URL(string: urlString) {
+//                    completion(imageUrl)
+//                } else {
+//                    completion(nil)
+//                }
+//            }
+//
+//            dataTask.resume()
+//        }
     
     func nextQuote() {
-        if currentIndex < quotes.count - 1 {
-            currentIndex += 1
-        } else {
-            getData()
+            if currentIndex < quotes.count - 1 {
+                currentIndex += 1
+                currentImageIndex = (currentImageIndex + 1) % pictures.count
+            } else {
+                getData()
+            }
         }
-    }
     
     func previousQuote() {
-        if currentIndex > 0 {
-            currentIndex -= 1
+            if currentIndex > 0 {
+                currentIndex -= 1
+                currentImageIndex = (currentImageIndex - 1 + pictures.count) % pictures.count 
+            }
         }
-    }
 }
 
