@@ -49,40 +49,40 @@ class QuoteViewModel: ObservableObject {
         dataTask.resume()
     }
     
-//    func getRandomImage(completion: @escaping (URL?) -> Void) {
-//            guard let url = URL(string: "https://random.responsiveimages.io/") else {
-//                completion(nil)
-//                return
-//            }
-//
-//            let session = URLSession.shared
-//            let dataTask = session.dataTask(with: url) { (data, response, error) in
-//                if let data = data,
-//                   let urlString = String(data: data, encoding: .utf8),
-//                   let imageUrl = URL(string: urlString) {
-//                    completion(imageUrl)
-//                } else {
-//                    completion(nil)
-//                }
-//            }
-//
-//            dataTask.resume()
-//        }
+    //    func getRandomImage(completion: @escaping (URL?) -> Void) {
+    //            guard let url = URL(string: "https://random.responsiveimages.io/") else {
+    //                completion(nil)
+    //                return
+    //            }
+    //
+    //            let session = URLSession.shared
+    //            let dataTask = session.dataTask(with: url) { (data, response, error) in
+    //                if let data = data,
+    //                   let urlString = String(data: data, encoding: .utf8),
+    //                   let imageUrl = URL(string: urlString) {
+    //                    completion(imageUrl)
+    //                } else {
+    //                    completion(nil)
+    //                }
+    //            }
+    //
+    //            dataTask.resume()
+    //        }
     
     func nextQuote() {
-            if currentIndex < quotes.count - 1 {
-                currentIndex += 1
-                currentImageIndex = (currentImageIndex + 1) % pictures.count
-            } else {
-                getData()
-            }
+        if currentIndex < quotes.count - 1 {
+            currentIndex += 1
+            currentImageIndex = (currentImageIndex + 1) % pictures.count
+        } else {
+            getData()
         }
+    }
     
     func previousQuote() {
-            if currentIndex > 0 {
-                currentIndex -= 1
-                currentImageIndex = (currentImageIndex - 1 + pictures.count) % pictures.count 
-            }
+        if currentIndex > 0 {
+            currentIndex -= 1
+            currentImageIndex = (currentImageIndex - 1 + pictures.count) % pictures.count 
         }
+    }
 }
 
